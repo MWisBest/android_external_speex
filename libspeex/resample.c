@@ -964,23 +964,15 @@ EXPORT int speex_resampler_process_interleaved_float(SpeexResamplerState *st, co
 {
    spx_uint32_t i;
    int istride_save, ostride_save;
-#ifdef OMAP_ENHANCEMENT
    spx_uint32_t bak_out_len = *out_len;
    spx_uint32_t bak_in_len = *in_len;
-#else
-   spx_uint32_t bak_len = *out_len;
-#endif
    istride_save = st->in_stride;
    ostride_save = st->out_stride;
    st->in_stride = st->out_stride = st->nb_channels;
    for (i=0;i<st->nb_channels;i++)
    {
-#ifdef OMAP_ENHANCEMENT
       *out_len = bak_out_len;
       *in_len = bak_in_len;
-#else
-      *out_len = bak_len;
-#endif
       if (in != NULL)
          speex_resampler_process_float(st, i, in+i, in_len, out+i, out_len);
       else
@@ -995,23 +987,15 @@ EXPORT int speex_resampler_process_interleaved_int(SpeexResamplerState *st, cons
 {
    spx_uint32_t i;
    int istride_save, ostride_save;
-#ifdef OMAP_ENHANCEMENT
    spx_uint32_t bak_out_len = *out_len;
    spx_uint32_t bak_in_len = *in_len;
-#else
-   spx_uint32_t bak_len = *out_len;
-#endif
    istride_save = st->in_stride;
    ostride_save = st->out_stride;
    st->in_stride = st->out_stride = st->nb_channels;
    for (i=0;i<st->nb_channels;i++)
    {
-#ifdef OMAP_ENHANCEMENT
       *out_len = bak_out_len;
       *in_len = bak_in_len;
-#else
-      *out_len = bak_len;
-#endif
       if (in != NULL)
          speex_resampler_process_int(st, i, in+i, in_len, out+i, out_len);
       else
